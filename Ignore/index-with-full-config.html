@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Test Fretboard Page</title>
+    <meta name="viewport" content="initial-scale=1">
+    <script src="jquery.js"></script>
+    <script src="fretboard.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="demo-styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="my-fretboard-js"></div>
+        <!--<div class="my-fretboard-js dark-theme"></div>-->
+
+    <script type="text/javascript">
+        (function ($) {
+            var isChordMode = true;
+            var isDisabled = false;
+            var noteLetters = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+            var standardTuning = [{
+                letter: "E",
+                octave: 4
+            }, {
+                letter: "B",
+                octave: 3
+            }, {
+                letter: "G",
+                octave: 3
+            }, {
+                letter: "D",
+                octave: 3
+            }, {
+                letter: "A",
+                octave: 2
+            }, {
+                letter: "E",
+                octave: 2
+            }];
+            var numFrets = 16;
+            var dimensionsFunc = function ($fretboardContainer, $fretboardBody, settings) {
+                var width = $(window).width();
+                var height;
+
+                if (width <= 768) {
+                    height = settings.tuning.length * 26;
+                } else {
+                    height = settings.tuning.length * 32;
+                }
+
+                return {
+                    height: height
+                };
+            };
+            var noteCircles = [3, 5, 7, 9, 12, 15, 17, 19, 21, 24];
+            var intervals = ["1", "b2", "2", "b3", "3", "4", "b5", "5", "b6", "6", "b7", "7"];
+            var root = "C";
+            var animationSpeed = 400; // ms
+            var noteMode = "letter"; // or "interval"
+            var clickedNotesChangedFunc = function () {
+                console.log($fretboard.data("api").getClickedNotes());
+            }
+
+            var options = {
+                tuning: standardTuning,
+                numFrets: numFrets,
+                isChordMode: isChordMode,
+                noteClickingDisabled: isDisabled,
+                noteLetters: noteLetters,
+                noteMode: noteMode,
+                intervals: intervals,
+                root: root,
+                animationSpeed: animationSpeed,
+                noteCircles: noteCircles,
+                dimensionsFunc: dimensionsFunc,
+                notesClickedCallback: clickedNotesChangedFunc
+            };
+
+            var $fretboard = $(".my-fretboard-js");
+
+            $fretboard.fretboard(options);
+          
+        })(jQuery);
+    </script>
+</body>
+</html>
