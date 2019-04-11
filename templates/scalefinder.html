@@ -45,10 +45,11 @@
   <!-- Page Content -->
   <div class="container">
     <br><br>
+    <form id="form1" action="/scalefind" method="POST"> 
     <div class="card">
         <div class="card-header">
          Pick Notes of the Scale
-                       <select class="col-lg-1 form-control float-lg-right" name="key" id="key">
+                      <select onchange="root()" class="col-lg-1 form-control float-lg-right" name="key" id="key">
                             <option value="0">Key</option>
                             <option value="C">C</option>
                             <option value="Cs">C#</option>
@@ -57,7 +58,7 @@
                             <option value="E">E</option>
                             <option value="F">F</option>
                             <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -68,7 +69,7 @@
         <div class="card-body">
         <div class="row">
             <div class="col-lg-2">
-                    <select class="form-control" name="note1" id="note1">
+                    <select disabled class="form-control" name="note1" id="note1">
                             <option value="0">-</option>
                             <option value="C">C</option>
                             <option value="Cs">C#</option>
@@ -76,8 +77,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -93,8 +94,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -110,8 +111,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -127,8 +128,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -144,8 +145,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -161,8 +162,8 @@
                             <option value="Ds">D#</option>
                             <option value="E">E</option>
                             <option value="F">F</option>
-                            <option value="Fs">G</option>
-                            <option value="G">G#</option>
+                            <option value="Fs">F#</option>
+                            <option value="G">G</option>
                             <option value="Gs">G#</option>
                             <option value="A">A</option>
                             <option value="As">A#</option>
@@ -180,8 +181,8 @@
                                 <option value="Ds">D#</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="Fs">G</option>
-                                <option value="G">G#</option>
+                                <option value="Fs">F#</option>
+                                <option value="G">G</option>
                                 <option value="Gs">G#</option>
                                 <option value="A">A</option>
                                 <option value="As">A#</option>
@@ -197,8 +198,8 @@
                                 <option value="Ds">D#</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="Fs">G</option>
-                                <option value="G">G#</option>
+                                <option value="Fs">F#</option>
+                                <option value="G">G</option>
                                 <option value="Gs">G#</option>
                                 <option value="A">A</option>
                                 <option value="As">A#</option>
@@ -214,8 +215,8 @@
                                 <option value="Ds">D#</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="Fs">G</option>
-                                <option value="G">G#</option>
+                                <option value="Fs">F#</option>
+                                <option value="G">G</option>
                                 <option value="Gs">G#</option>
                                 <option value="A">A</option>
                                 <option value="As">A#</option>
@@ -231,8 +232,8 @@
                                 <option value="Ds">D#</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="Fs">G</option>
-                                <option value="G">G#</option>
+                                <option value="Fs">F#</option>
+                                <option value="G">G</option>
                                 <option value="Gs">G#</option>
                                 <option value="A">A</option>
                                 <option value="As">A#</option>
@@ -248,8 +249,8 @@
                                 <option value="Ds">D#</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="Fs">G</option>
-                                <option value="G">G#</option>
+                                <option value="Fs">F#</option>
+                                <option value="G">G</option>
                                 <option value="Gs">G#</option>
                                 <option value="A">A</option>
                                 <option value="As">A#</option>
@@ -261,13 +262,13 @@
     </div>
     <hr>
     <div class="float-lg-right">
-            <button onclick="" class="float-lg-right btn btn-dark" type="submit">Add Patient</button>
+            <button onclick="" class="float-lg-right btn btn-dark" type="submit">Search</button>
             <button type="reset" class="btn btn-danger">Reset</button>
-        </div>
-
+    </div>
 
     </div>
-    <div class="my-fretboard-js"></div>
+    </form>
+    <!-- <div class="my-fretboard-js"></div> -->
   </div>
 
   <script type="text/javascript">
@@ -338,6 +339,12 @@
         $fretboard.fretboard(options);
       
     })(jQuery);
+
+    function root(){
+        document.getElementById("note1").selectedIndex=document.getElementById("key").selectedIndex;
+    }
+
+
 </script>
 
 </body>
