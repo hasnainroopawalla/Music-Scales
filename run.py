@@ -38,7 +38,7 @@ def findit():
   print('Entered Notes: ',finalnotes)
 
 
-  with open('Ignore/scales.json') as f:
+  with open('Static/dataset/scales.json') as f:
       data = json.load(f),
 
   root=finalnotes[0]
