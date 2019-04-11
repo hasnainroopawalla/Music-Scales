@@ -5,20 +5,29 @@ note={0:'C',1:'C#',2:'D',3:'D#',4:'E',5:'F',6:'F#',7:'G',8:'G#',9:'A',10:'A#',11
 with open('Static/dataset/scales.json') as f:
     data = json.load(f),
 
-#root=input('Enter root: ')
-finalnotes=['G#','A#',"C","D","B"]
+finalnotes=['D', 'C', 'D#', 'F', 'G#', 'A', 'A#']
 allscalekey=[]
+filteredscales=[]
 
-#print(data[0][233]['name'])
 
 for i in data[0]:
     scalekey=[]
-    for j in i['notes']:
-        scalekey.append(note[j+inputnote[finalnotes[0]]])
-        #print(note[j+inputnote[finalnotes[0]]])
-    allscalekey.append(scalekey)   
+    scaledict={}
+    scaledict['name']=i['name']
+    scaledict['notes']=i['notes']
+    allscalekey.append(scaledict)
+  
 
+for i in range(0,len(allscalekey)):
+    temp=[]
+    for j in allscalekey[i]['notes']:
+        temp.append(note[j+inputnote[finalnotes[0]]])
+    allscalekey[i]['notes']=temp
 print(allscalekey)
     
-##for i in data[0][233]['notes']:
-##    print(i+inputnote[root],':',note[i+inputnote[root]])
+
+for i in range(0,len(allscalekey)):
+    if set(finalnotes).issubset(allscalekey[i]['notes']):
+        filteredscales.append(allscalekey[i])
+        
+print(filteredscales)
