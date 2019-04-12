@@ -55,7 +55,6 @@
          Pick Notes of the Scale <i style="margin-left: 1%;" id="resetform" class="fa-1x fa fa-refresh" aria-hidden="true"></i>
 
                       <select onchange="root()" class="col-lg-1 form-control float-lg-right" name="key" id="key">
-                            <option value="0">Key</option>
                             <option value="C">C</option>
                             <option value="C#">C#</option>
                             <option value="D">D</option>
@@ -75,7 +74,6 @@
         <div class="row">
             <div class="col-lg-2">
                     <select disabled class="form-control" name="note1" id="note1">
-                            <option value="0">Key</option>
                             <option value="C">C</option>
                             <option value="C#">C#</option>
                             <option value="D">D</option>
@@ -311,11 +309,14 @@
                 <i class="fa-3x fa-play-circle fa" id="hear" style="margin-right: 2%;" aria-hidden="true"></i>                
                 <i class="fa-3x fa-stop-circle fa" id="stophear" aria-hidden="true"></i>
         </div>
-     </div>
-     <!-- Dropdown for Scales -->
 
+     </div><br>
+     <!-- Dropdown for Scales -->
+     <div class="row">
+        <button class="btn btn-success">Visualize</button>
+     </div>
     </div><hr>
-    <div class="my-fretboard-js"></div>
+    <div class="my-fretboard-js"></div><br>
   </div>
 
   <script type="text/javascript">
