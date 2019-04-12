@@ -41,10 +41,31 @@ def findit():
   with open('Static/dataset/scales.json') as f:
       data = json.load(f),
 
-  root=finalnotes[0]
-  print(data[0][233]['name'])
-  for i in data[0][233]['notes']:
-      print(i+inputnote[root],':',note[i+inputnote[root]])
+  allscalekey=[]
+  filteredscales=[]
+
+
+  for i in data[0]:
+     scalekey=[]
+     scaledict={}
+     scaledict['name']=i['name']
+     scaledict['notes']=i['notes']
+     allscalekey.append(scaledict)
+  
+
+  for i in range(0,len(allscalekey)):
+     temp=[]
+     for j in allscalekey[i]['notes']:
+         temp.append(note[j+inputnote[finalnotes[0]]])
+     allscalekey[i]['notes']=temp
+  #print(allscalekey)
+    
+
+  for i in range(0,len(allscalekey)):
+     if set(finalnotes).issubset(allscalekey[i]['notes']):
+         filteredscales.append(allscalekey[i])
+        
+  print(filteredscales)
 
 
   return redirect("scalefinder") 
