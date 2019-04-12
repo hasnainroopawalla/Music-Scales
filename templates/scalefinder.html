@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Scale Master</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
   <script src="https://unpkg.com/tone"></script>
   <script src="https://unpkg.com/@tonejs/ui"></script>
@@ -51,7 +52,8 @@
     <form id="form1" action="/scalefind" method="POST"> 
     <div class="card">
         <div class="card-header">
-         Pick Notes of the Scale
+         Pick Notes of the Scale <i style="margin-left: 1%;" id="resetform" class="fa-1x fa fa-refresh" aria-hidden="true"></i>
+
                       <select onchange="root()" class="col-lg-1 form-control float-lg-right" name="key" id="key">
                             <option value="0">Key</option>
                             <option value="C">C</option>
@@ -263,13 +265,14 @@
                 
             </div>
     </div>
-    <hr>
     <div class="float-lg-right">
-            <button onclick="" class="float-lg-right btn btn-success" type="submit">Search</button>
-            <button type="reset" class="btn btn-danger">Reset</button>
+                <i id="submitform" style="color:#43a047; margin-right: 10px; margin-bottom: 10px;" class="fa float-lg-right fa-2x fa-arrow-right" aria-hidden="true"></i>
+            <!-- <button onclick="" class="float-lg-right btn btn-success" type="submit">Search</button> -->
+            <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
     </div>
     </div>
-    </form><br>
+    </form><br> 
+
         
     <!-- View Selected Notes -->
     <div class="row">
@@ -304,11 +307,14 @@
             {% endfor %}                   
         </select>
         </div>
-        <button class="btn btn-secondary" id="hear">Hear</button>
+        <div class="col-lg-2">
+                <i class="fa-3x fa-play-circle fa" id="hear" style="margin-right: 2%;" aria-hidden="true"></i>                
+                <i class="fa-3x fa-stop-circle fa" id="stophear" aria-hidden="true"></i>
+        </div>
      </div>
      <!-- Dropdown for Scales -->
 
-    </div>
+    </div><hr>
     <div class="my-fretboard-js"></div>
   </div>
 
@@ -387,6 +393,7 @@
     const synth = new Tone.FMSynth().toMaster();
 
     $("#hear").click(function(){
+        var flag=0;
         var soundscale=[];
         var scale = document.getElementById("showscale").options[document.getElementById("showscale").selectedIndex].value;
         {% for i in filteredscales %}
@@ -397,19 +404,67 @@
            {% endfor %}
         }
         {% endfor %}
+        
          soundscale.push(soundscale[0]);
+         flag=0;
          for(var i=0;i<soundscale.length;i++){
-                var play=soundscale[i]+'4';
-                synth.triggerAttackRelease(play, 0.5, i+1);
-                console.log(play);
+                if(flag==1){
+                        soundscale[i]=soundscale[i]+'4';
+                }
+                else{
+                        soundscale[i]=soundscale[i]+'3';
+                }
+                if(soundscale[i+1]=='C' || soundscale[i+1]=='C#' && i!=0){
+                        flag=1;
+                }
          }
-        //  synth.triggerAttackRelease('C4', 0.5, 1);
-        //  synth.triggerAttackRelease('C#4', 0.5, 2);
-        //  synth.triggerAttackRelease('D4', 0.5, 3);
 
+         console.log(soundscale);
+
+        const synthPart = new Tone.Sequence(
+        function(time, note) {
+        synth.triggerAttackRelease(note, "10hz", time);
+        },
+        soundscale,
+        "4n"
+        );
+        synthPart.start();
+        Tone.Transport.start();
+    });
+    
+    $("#stophear").click(function(){
+            Tone.Transport.stop();
     });
 
+    $("#hear").mouseover(function (e) {    
+        $(this).css('color','green');
+    }).mouseout(function (e) {
+      $(this).css('color','#212529');
+    });
 
+    $("#stophear").mouseover(function (e) {    
+        $(this).css('color','red');
+    }).mouseout(function (e) {
+      $(this).css('color','#212529');
+    });
+
+    $("#resetform").mouseover(function (e) {    
+        $(this).css('opacity','0.5');
+    }).mouseout(function (e) {
+      $(this).css('opacity','1');
+    });
+    $("#submitform").mouseover(function (e) {    
+        $(this).css('color','#66bb6a');
+    }).mouseout(function (e) {
+      $(this).css('color','#43a047');
+    });
+
+    $("#resetform").click(function(){
+        document.getElementById("form1").reset();
+    });
+    $("#submitform").click(function(){
+        document.getElementById("form1").submit();
+    });
 </script>
 
 </body>
