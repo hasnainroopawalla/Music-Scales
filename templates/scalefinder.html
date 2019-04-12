@@ -262,12 +262,44 @@
     </div>
     <hr>
     <div class="float-lg-right">
-            <button onclick="" class="float-lg-right btn btn-dark" type="submit">Search</button>
+            <button onclick="" class="float-lg-right btn btn-success" type="submit">Search</button>
             <button type="reset" class="btn btn-danger">Reset</button>
     </div>
 
     </div>
-    </form>
+    </form><br>
+    <div class="row">
+                {% for i in range(0,finalnotes|length) %}
+                  {% if i==0 %}
+                  <div class="col-lg-1">
+                                <div class="card bg-dark text-white text-center" style="height: 60px;width: 70px; margin-top: 2%;">
+                                        <div class="card-body">
+                                                {{finalnotes[i]}}
+                                        </div>                             
+                                </div>
+                        </div>
+                  {% else %}
+                <div class="col-lg-1">
+                        <div class="card bg-secondary text-white text-center" style="height: 60px;width: 70px; margin-top: 2%;">
+                                <div class="card-body">
+                                        {{finalnotes[i]}}
+                                </div>                             
+                        </div>
+                </div>
+                {% endif %}
+                {% endfor %}                   
+     </div><br>
+     <div class="row">
+        <div class="col-lg-5">
+
+        <select class="form-control" name="showscale" id="showscale">
+            {% for i in filteredscales %}
+                <option value="{{ i['name'] }}">{{i['name']}}</option>
+            {% endfor %}                   
+        </select>
+        </div>
+        </div>
+    </div>
     <!-- <div class="my-fretboard-js"></div> -->
   </div>
 

@@ -3,12 +3,17 @@ import json
 
 app = Flask(__name__)
 
+filteredscales=[]
+finalnotes=[]
 inputnote={'C':0,'C#':1,'D':2,'D#':3,'E':4,'F':5,'F#':6,'G':7,'G#':8,'A':9,'A#':10,'B':11}
 note={0:'C',1:'C#',2:'D',3:'D#',4:'E',5:'F',6:'F#',7:'G',8:'G#',9:'A',10:'A#',11:'B',12:'C',13:'C#',14:'D',15:'D#',16:'E',17:'F',18:'F#',19:'G',20:'G#',21:'A',22:'A#',23:'B',24:'C'}
 
 @app.route("/scalefinder")
 def scalefind():
-    return render_template('scalefinder.html')
+    global filteredscales
+    global finalnotes
+    print(filteredscales)
+    return render_template('scalefinder.html',filteredscales=filteredscales,finalnotes=finalnotes)
 
 @app.route("/")
 def firstpage():
@@ -16,10 +21,12 @@ def firstpage():
 
 @app.route("/scalefind", methods=["GET", "POST"])
 def findit():
-  
+
+  global filteredscales
+  global finalnotes
+  filteredscales=[]
   notes=[]
   finalnotes=[]
-
   notes.append(request.form['key'])
   notes.append(request.form['note2'])
   notes.append(request.form['note3'])
@@ -42,8 +49,6 @@ def findit():
       data = json.load(f),
 
   allscalekey=[]
-  filteredscales=[]
-
 
   for i in data[0]:
      scalekey=[]
@@ -65,7 +70,7 @@ def findit():
      if set(finalnotes).issubset(allscalekey[i]['notes']):
          filteredscales.append(allscalekey[i])
         
-  print(filteredscales)
+  #print('Filtered: ',filteredscales)
 
 
   return redirect("scalefinder") 
