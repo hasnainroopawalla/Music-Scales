@@ -11,6 +11,7 @@
   <script src="https://unpkg.com/@tonejs/ui"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/fretnotes.js"></script>
   <script src="/static/js/fretboard.js"></script>
   <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/demo-styles.css')}}">
@@ -118,7 +119,7 @@
      </div><br>
      <!-- Dropdown for Scales -->
      <div class="row">
-        <button class="btn btn-success">Visualize</button>
+        <button id="visualize" class="btn btn-success">Visualize</button>
      </div>
     </div><hr>
     <div class="my-fretboard-js"></div><br>
@@ -126,7 +127,9 @@
 </div>
 
   <script type="text/javascript">
+    
     (function ($) {
+        
         var isChordMode = true;
         var isDisabled = false;
         var noteLetters = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -149,7 +152,7 @@
             letter: "E",
             octave: 2
         }];
-        var numFrets = 16;
+        var numFrets = 18;
         var dimensionsFunc = function ($fretboardContainer, $fretboardBody, settings) {
             var width = $(window).width();
             var height;
@@ -428,6 +431,44 @@
         $(this).css('color','black');
         $(this).off('click');       
         clickednotes.push('B');
+    });
+
+    $("#visualize").click(function(){
+    
+            var $fretboard = $(".my-fretboard-js");
+            var api = $fretboard.data("api");
+
+            api.clearClickedNotes();
+            var scale = document.getElementById("showscale").options[document.getElementById("showscale").selectedIndex].value;
+            var soundscale=[];
+            {% for i in filteredscales %}
+                var tt='{{i['name']}}';
+                if(tt==scale){
+                {% for j in i['notes'] %}
+                    soundscale.push('{{j}}');
+                {% endfor %}
+            }
+        {% endfor %} 
+
+        console.log(soundscale);
+                for(var i=0;i<soundscale.length;i++){
+
+                    if(soundscale[i]=='C'){api.setClickedNotes(CNotes);}
+                    if(soundscale[i]=='C#'){api.setClickedNotes(CsNotes);}
+                    if(soundscale[i]=='D'){api.setClickedNotes(DNotes);}
+                    if(soundscale[i]=='D#'){api.setClickedNotes(DsNotes);}
+                    if(soundscale[i]=='E'){api.setClickedNotes(ENotes);}
+                    if(soundscale[i]=='F'){api.setClickedNotes(FNotes);}
+                    if(soundscale[i]=='F#'){api.setClickedNotes(FsNotes);}
+                    if(soundscale[i]=='G'){api.setClickedNotes(GNotes);}
+                    if(soundscale[i]=='G#'){api.setClickedNotes(GsNotes);}
+                    if(soundscale[i]=='A'){api.setClickedNotes(ANotes);}
+                    if(soundscale[i]=='A#'){api.setClickedNotes(AsNotes);}
+                    if(soundscale[i]=='B'){api.setClickedNotes(BNotes);}
+
+            
+            }
+            
     });
 </script>
 
