@@ -121,6 +121,9 @@
      <div class="row">
         <button id="visualize" class="btn btn-success">Visualize</button>
      </div>
+     <div style="text-align: center;">
+        <span style="color: #374A67; letter-spacing: 4px;font-size: 25px;" id="scaleshow"></span>
+    </div>
     </div><hr>
     <div class="my-fretboard-js"></div><br>
   </div>
@@ -216,6 +219,13 @@
         {% endfor %}
         
          soundscale.push(soundscale[0]);
+         $("#scaleshow").text('');
+         for(var i=0;i<soundscale.length;i++){
+
+              $("#scaleshow").text($("#scaleshow").text()+soundscale[i]+' ');
+         }
+
+
          flag=0;
          for(var i=0;i<soundscale.length;i++){
                 if(flag==1){
@@ -229,7 +239,6 @@
                 }
          }
 
-         console.log(soundscale);
 
         const synthPart = new Tone.Sequence(
         function(time, note) {
@@ -238,6 +247,7 @@
         soundscale,
         "4n"
         );
+        Tone.Transport.stop();
         synthPart.start();
         Tone.Transport.start();
     });

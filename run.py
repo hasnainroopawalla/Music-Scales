@@ -27,26 +27,11 @@ def findit():
   filteredscales=[]
   notes=[]
   finalnotes=[]
-#   notes.append(request.form['key'])
-#   notes.append(request.form['note2'])
-#   notes.append(request.form['note3'])
-#   notes.append(request.form['note4'])
-#   notes.append(request.form['note5'])
-#   notes.append(request.form['note6'])
-#   notes.append(request.form['note7'])
-#   notes.append(request.form['note8'])
-#   notes.append(request.form['note9'])
-#   notes.append(request.form['note10'])
-#   notes.append(request.form['note11'])
-  
-#   for i in notes:
-#       if i!='0':
-#           finalnotes.append(i)
-#   print('Entered Notes: ',finalnotes)
+
   clickednotes=request.get_json()
   for i in clickednotes['clickednotes']:
       finalnotes.append(i)
-  print(finalnotes)
+  print('f',finalnotes)
   with open('Static/dataset/scales.json') as f:
       data = json.load(f),
 
