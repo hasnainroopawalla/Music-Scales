@@ -1,5 +1,5 @@
 # Music-Scales
-A flask application developed to browse/find through thousands of music scales in any key
+A web application (Flask) to browse through thousands of music scales in any key
 
 Visualizes the entire scale (in the selected key) on the Guitar Fretboard
 
