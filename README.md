@@ -5,7 +5,7 @@ Visualizes the entire scale (in the selected key) on the Guitar Fretboard
 
 Also plays the notes of the scales (audio)
 
-# Demonstration
+# Flask Web-Application
 
 Dashboard:
 
@@ -16,6 +16,7 @@ Select the Key and a Few Notes:
 ![Select the Key and a Few Notes](https://github.com/hasnainroopawalla/Music-Scales/blob/master/images/Capture2.JPG)
 
 Ajax Call to retrieve all relevant scales:
+
 ![Ajax Call to retrieve all relevant scales](https://github.com/hasnainroopawalla/Music-Scales/blob/master/images/Capture3.JPG)
 
 Play the notes of the scale (Audio) and Visualize on the Guitar Fretboard:
